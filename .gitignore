@@ -1,3 +1,8 @@
 **/.env
 **/.DS_Store
 **/*.o
+
+
+# Added by cargo
+
+/target
