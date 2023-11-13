@@ -1,45 +1,25 @@
-pub struct PolyEq {
-    degree: u8,
-    zero: f32,
-    one: f32,
-    two: f32,
-    discriminant: f32,
-    x1: f32,
-    x2: f32,
-}
+use crate::math::*; // maybe scope down
 
-pub struct PolySolution {}
+pub fn parser(args: &str) -> Result<Polynomial, String> {
+    let mut poly = Polynomial::new();
+    let args = args.split_whitespace();
 
-impl PolyEq {
-    pub fn new() -> Self {
-        Self {
-            degree: 0,
-            zero: 0f32,
-            one: 0f32,
-            two: 0f32,
-            discriminant: 0f32,
-            x1: 0f32,
-            x2: 0f32,
-        }
+    for arg in args {
+        println!("iter: {arg}");
     }
-}
-
-pub fn parser(args: &str) -> Option<PolyEq> {
-    let mut eq = PolyEq::new();
-    let iter = args.split_whitespace();
-    for str in iter {
-        println!("iter: {str}");
-        match str {
-            s if s.starts_with('X') => {}
-            _ => return None,
-        }
-    }
-    // for c in args.chars() {
-    // 	match c {
-    // 		' ' => (),
-
-    // 	}
+    // let mut a = 0f32; // change name
+    // let iter = args.split_whitespace();
+    // // what if you need to check the format?
+    // for str in iter {
+    //     println!("iter: {str}");
+    //     match str {
+    //         '*' => (),
+    //         '+' => (),
+    //         '-' => (), // change to neg
+    //         s if s.starts_with('X') => {}
+    //         _ => (),
+    //     }
     // }
 
-    return Some(eq);
+    Ok(poly)
 }
