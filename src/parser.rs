@@ -1,4 +1,4 @@
-use crate::math::polynomial::Polynomial; // maybe scope down
+use crate::math::polynomial::Polynomial;
 use crate::math::term::Term;
 
 pub fn parse(args: &str) -> Result<Polynomial, String> {
