@@ -47,37 +47,55 @@ impl Polynomial {
         form
     }
 
-    fn solve_second_degree(&self) -> Result<Vec<f32>, String> {
-        // guard against if degree is not 2
-
+    fn solve_second_degree(&self) {
         let (mut a, mut b, mut c) = (0f32, 0f32, 0f32);
-        let get_discriminant = |poly: &Polynomial| -> f32 {
+        let mut get_discriminant = |poly: &Polynomial| -> f32 {
             for term in &poly.terms {
                 match term.degree {
                     2 => a = term.coefficient,
                     1 => b = term.coefficient,
                     0 => c = term.coefficient,
-                    _ => unreachable!(),
+                    _ => (),
                 }
             }
             b * b - 4f32 * a * c
         };
 
-        // match get_discriminant(self) {
-        //     d if d > 0f32 => {}
-        //     d if d < 0f32 => {}
-        //     d if d == 0f32 => vec![]
-        //     _ => unreachable!(),
-        // }
-        Err("test".to_string())
+        match get_discriminant(self) {
+            d if d > 0f32 => {
+                println!("The discriminant is strictly positive, the two solutions are:");
+                println!("{:.6}", (-b - d.sqrt()) / (2f32 * a));
+                println!("{:.6}", (-b + d.sqrt()) / (2f32 * a));
+            }
+            d if d < 0f32 => {
+                println!("The discriminant is strictly negative, the two solutions are:");
+                println!();
+            }
+            d if d == 0f32 => {
+                println!("The discriminant is strictly zero, the only solution is:");
+                println!("{:.6}", (-b + d.sqrt()) / (2f32 * a));
+            }
+            _ => unreachable!(),
+        }
     }
 
-    // fn solve_first_degree(&self) -> Result<Vec<f32>, String> {}
+    fn solve_first_degree(&self) {
+        let (mut a, mut b) = (0f32, 0f32);
+        for term in &self.terms {
+            match term.degree {
+                1 => a = term.coefficient,
+                0 => b = term.coefficient,
+                _ => (),
+            }
+        }
+        println!("The solution is:");
+        println!("{}", -b / a);
+    }
 
     pub fn try_solve(&self) {
         match self.get_degree() {
-            2 => (),
-            1 => (),
+            2 => self.solve_second_degree(),
+            1 => self.solve_first_degree(),
             0 => println!("Each real number is a solution."),
             _ => println!("The polynomial degree is strigly greater than 2, I can't solve."),
         }
