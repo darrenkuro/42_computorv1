@@ -9,9 +9,13 @@ fn main() -> Result<(), String> {
         return Err("Wrong arguments!".to_string());
     };
 
-    //let input = env::args().nth(1).ok_or("Missing arguments!")?;
-
-    parser::parser(&input);
-    //println!("{input}");
-    Ok(())
+    match parser::parse(&input) {
+        Ok(mut poly) => {
+            println!("Reduced form: {}", poly.print_form());
+            println!("Polynomial degree: {}", poly.get_degree());
+            poly.try_solve();
+            Ok(())
+        }
+        Err(e) => Err(e),
+    }
 }
