@@ -74,7 +74,7 @@ impl Polynomial {
             }
             d if d == 0f32 => {
                 println!("The discriminant is strictly zero, the only solution is:");
-                println!("{}", (-b + sqrt(d)) / (2f32 * a));
+                println!("{}", -b / (2f32 * a));
             }
             _ => unreachable!(),
         }
