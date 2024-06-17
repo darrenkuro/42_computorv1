@@ -64,16 +64,22 @@ impl Polynomial {
         match get_discriminant(self) {
             d if d > 0f32 => {
                 println!("The discriminant is strictly positive, the two solutions are:");
+                println!("^ Discriminant = {}^2 - 4 * {} * {} = {}", b, a, c, d);
+                println!("^ X = ±{} - sqrt({}) / (2 * {})", b.abs(), d, a);
                 println!("{}", (-b - sqrt(d)) / (2f32 * a));
                 println!("{}", (-b + sqrt(d)) / (2f32 * a));
             }
             d if d < 0f32 => {
                 println!("The discriminant is strictly negative, the two solutions are:");
+                println!("^ Discriminant = {}^2 - 4 * {} * {} = {}", b, a, c, d);
+                println!("^ X = ±{} - sqrt({}) / (2 * {})", b.abs(), d, a);
                 println!("{} + {}i", -b / (2f32 * a), sqrt(-d) / (2f32 * a));
                 println!("{} - {}i", -b / (2f32 * a), sqrt(-d) / (2f32 * a));
             }
             d if d == 0f32 => {
                 println!("The discriminant is strictly zero, the only solution is:");
+                println!("^ Discriminant = {}^2 - 4 * {} * {} = {}", b, a, c, d);
+                println!("^ X = ±{} - sqrt({}) / (2 * {})", b.abs(), d, a);
                 println!("{}", -b / (2f32 * a));
             }
             _ => unreachable!(),
@@ -90,6 +96,8 @@ impl Polynomial {
             }
         }
         println!("The solution is:");
+        println!("^ {} * X^1 = {} * X^0", a, -b);
+        println!("^ X = {} / {}", -b, a);
         println!("{}", -b / a);
     }
 

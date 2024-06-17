@@ -17,4 +17,7 @@ fclean: clean
 
 re: fclean all
 
-.PHONY : all clean fclean re
+test:
+	$(CARGO) test
+
+.PHONY : all clean fclean re test
