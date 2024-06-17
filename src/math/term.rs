@@ -9,6 +9,7 @@ pub struct Term {
 impl Term {
     pub fn new(term: &str) -> Result<Self, String> {
         let components: Vec<&str> = term.split("* X^").collect();
+        // If were to manage free form entries, do it here
         if components.len() != 2 {
             return Err(format!("Syntax Error: invalid term {term}!").to_string());
         }

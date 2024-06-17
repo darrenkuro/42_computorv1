@@ -39,7 +39,7 @@ impl Polynomial {
             } else if term.coefficient < 0f32 {
                 form.push_str(&format!(" {term}"));
             } else if term.coefficient > 0f32 {
-                form.push_str(&format!("+ {term}"));
+                form.push_str(&format!(" + {term}"));
             }
         }
         form.push_str(" = 0");
@@ -98,7 +98,7 @@ impl Polynomial {
             2 => self.solve_second_degree(),
             1 => self.solve_first_degree(),
             0 => println!("Each real number is a solution."),
-            _ => println!("The polynomial degree is strigly greater than 2, I can't solve."),
+            _ => println!("The polynomial degree is strictly greater than 2, I can't solve."),
         }
     }
 }
