@@ -121,7 +121,6 @@ impl std::ops::Sub for Polynomial {
 
 #[cfg(test)]
 mod tests {
-    use super::*;
 
     #[test]
     fn push_term() {

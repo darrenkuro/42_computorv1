@@ -39,9 +39,6 @@ impl fmt::Display for Term {
 
 #[cfg(test)]
 mod term {
-    use super::*;
-    use std::io::Write;
-
     #[test]
     fn print() {
         // let mut term = Term::new(10, 1.1);
