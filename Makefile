@@ -1,23 +1,35 @@
-NAME	:=	computor
-CARGO	:=	cargo
+NAME        := computor
+CARGO       := cargo
+TARGET_DIR  := target
+BUILD_TYPE  := release
+BUILD_DIR   := $(TARGET_DIR)/$(BUILD_TYPE)
+BIN_PATH    := $(BUILD_DIR)/$(NAME)
+OUT         := $(NAME)
 
-RM		:=	/bin/rm -f
+RM			:=	/bin/rm -f
 
-all: $(NAME)
+.PHONY: all
+all: $(OUT)
 
-$(NAME):
+$(OUT): $(BIN_PATH)
+	ln -sf $< $@
+
+$(BIN_PATH):
 	$(CARGO) build --release
 
+.PHONY: clean
 clean:
 	$(CARGO) clean
 
+.PHONY: fclean
 fclean: clean
-	$(RM) target
-	$(RM) cargo.lock
+	$(RM) $(OUT)
+	$(RM) -r $(TARGET_DIR)
+	$(RM) Cargo.lock
 
+.PHONY: re
 re: fclean all
 
+.PHONY: test
 test:
 	$(CARGO) test
-
-.PHONY : all clean fclean re test
